@@ -19,15 +19,17 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 this.x = this.x + (dt * this.speed);
 
-    if (this.x > 550) {
+   if (this.x > 550) {
         this.restart();
     }
 };
 
 Enemy.prototype.restart = function () {
-    this.x = -200;
-    this.y = 220;
-    this.speed = 100;
+    var yS = [220, 140, 60];
+    var speedS = [100, 150, 200];
+    this.x = x;
+    this.y = yS[Math.floor(Math.random() * 3)];
+    this.speed = speedS[Math.floor(Math.random() * 3)]
 };
 
 // Draw the enemy on the screen, required method for game
@@ -39,23 +41,30 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+var Player = function() {
+    this.x = x;
+    this.y = y;
+    this.sprite = 'images/char-boy.png';
+}
 
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
 var allEnemies = [];
+var yS = [220, 140, 60];
+var speedS = [100, 150, 200,];
 
-for (var i = 0; i < 3; i++) {
-    var x = -200;
-    var y = 220;
-    var speed = 100;
+    for (var i = 0; i < 4; i++) {
 
-    var enemy = new Enemy(x, y, speed);
+        var x = -200;
+        var y = yS[Math.floor(Math.random() * 3)];
+        var speed = speedS[Math.floor(Math.random() * 4)];
 
-    allEnemies.push(enemy);
-}
+        var enemy = new Enemy(x, y, speed);
+
+        allEnemies.push(enemy);
+    }
 //var player = Player1;
 
 
