@@ -61,6 +61,7 @@ Player.prototype.render = function() {
 
 };
 
+//Player movement with arrow keys
 Player.prototype.handleInput = function(dir) {
     if (dir == 'up') {
         this.y = this.y - 10;
@@ -70,6 +71,18 @@ Player.prototype.handleInput = function(dir) {
         this.x = this.x - 10;
     } else if (dir == 'right') {
         this.x = this.x + 10;
+    }
+
+    if (this.y > 404) {
+        this.y = 404;
+    } else if (this.y < -10) {
+        this.y = -10;
+    }
+
+    if (this.x < -100) {
+        this.x = 550;
+    } else if (this.x > 550) {
+        this.x = -100;
     }
 };
 
@@ -93,10 +106,6 @@ var speedS = [150, 200, 250,];
 // Place the player object in a variable called player
 
 var player = new Player(x, y, speed);
-
-
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
