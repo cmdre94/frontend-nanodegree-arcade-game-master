@@ -26,7 +26,7 @@ this.x = this.x + (dt * this.speed);
 
 Enemy.prototype.restart = function () {
     var yS = [220, 140, 60];
-    var speedS = [100, 150, 200];
+    var speedS = [150, 200, 250];
     this.x = x;
     this.y = yS[Math.floor(Math.random() * 3)];
     this.speed = speedS[Math.floor(Math.random() * 3)]
@@ -41,19 +41,32 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function() {
-    this.x = x;
-    this.y = y;
+var Player = function(x, y, speed) {
+    this.x = 200;
+    this.y = 400;
+    this.speed = 250;
     this.sprite = 'images/char-boy.png';
-}
+};
 
+Player.prototype.udate = function() {
+
+    this.x = this.x;
+    this.y = this.y;
+    this.speed = this.speed;
+    
+};
+
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+
 var allEnemies = [];
 var yS = [220, 140, 60];
-var speedS = [100, 150, 200,];
+var speedS = [150, 200, 250,];
 
     for (var i = 0; i < 4; i++) {
 
@@ -65,7 +78,9 @@ var speedS = [100, 150, 200,];
 
         allEnemies.push(enemy);
     }
-//var player = Player1;
+// Place the player object in a variable called player
+
+var player = new Player(x, y, speed);
 
 
 
