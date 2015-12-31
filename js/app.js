@@ -22,11 +22,17 @@ this.x = this.x + (dt * this.speed);
    if (this.x > 550) {
         this.restart();
     }
+
+    // Check for player collision
+    if (this.y == player.y && (this.x > player.x - 20 && this.x < player.x + 20)) {
+        player.reset();
+    }
+
 };
 
 Enemy.prototype.restart = function () {
     var yS = [220, 140, 60];
-    var speedS = [150, 200, 250];
+    var speedS = [450, 550, 650];
     this.x = x;
     this.y = yS[Math.floor(Math.random() * 3)];
     this.speed = speedS[Math.floor(Math.random() * 3)]
@@ -72,18 +78,26 @@ Player.prototype.handleInput = function(dir) {
     } else if (dir == 'right') {
         this.x = this.x + 10;
     }
-
+//Resets the player position if he reaches the water
     if (this.y > 404) {
         this.y = 404;
-    } else if (this.y < -10) {
-        this.y = -10;
+    } else if (this.y < -5) {
+        this.reset();
     }
 
-    if (this.x < -100) {
-        this.x = 550;
-    } else if (this.x > 550) {
-        this.x = -100;
+    if (this.x < -15) {
+        this.x = -15;
+    } else if (this.x > 415) {
+        this.x = 415;
     }
+
+};
+
+// Reset player to original starting position
+Player.prototype.reset = function() {
+    this.x = 200;
+    this.y = 400;
+    this.speed = 500;
 };
 
 // Now instantiate your objects.
@@ -91,7 +105,7 @@ Player.prototype.handleInput = function(dir) {
 
 var allEnemies = [];
 var yS = [220, 140, 60];
-var speedS = [150, 200, 250,];
+var speedS = [450, 550, 650];
 
     for (var i = 0; i < 4; i++) {
 
