@@ -21,12 +21,24 @@ this.x = this.x + (dt * this.speed);
 
    if (this.x > 550) {
         this.restart();
-    }
+        }
 
-    // Check for player collision
-    if (this.y == player.y && (this.x > player.x - 20 && this.x < player.x + 20)) {
+    // Player collides with Enemy at various y coordinates to make the game more difficult
+    if (this.y == player.y - 60 && (this.x > player.x - 20 && this.x < player.x + 20)) {
         player.reset();
-    }
+        }
+        else if (this.y == player.y -40 && (this.x > player.x - 20 && this.x < player.x + 20)) {
+                player.reset();
+        }        
+        else if (this.y == player.y -20 && (this.x > player.x - 20 && this.x < player.x + 20)) {
+                player.reset();
+        }       
+        else if (this.y == player.y  && (this.x > player.x - 20 && this.x < player.x + 20)) {
+                player.reset();
+        }
+        else if (this.y == player.y + 20 && (this.x > player.x - 20 && this.x < player.x + 20)) {
+                player.reset();
+        }       
 
 };
 
@@ -50,7 +62,7 @@ Enemy.prototype.render = function() {
 var Player = function(x, y, speed) {
     this.x = 200;
     this.y = 400;
-    this.speed = 500;
+    this.speed = 300;
     this.sprite = 'images/char-boy.png';
 };
 
@@ -70,13 +82,13 @@ Player.prototype.render = function() {
 //Player movement with arrow keys
 Player.prototype.handleInput = function(dir) {
     if (dir == 'up') {
-        this.y = this.y - 10;
+        this.y = this.y - 20;
     } else if (dir == 'down') {
-        this.y = this.y + 10;
+        this.y = this.y + 20;
     } else if (dir == 'left') {
-        this.x = this.x - 10;
+        this.x = this.x - 20;
     } else if (dir == 'right') {
-        this.x = this.x + 10;
+        this.x = this.x + 20;
     }
 //Resets the player position if he reaches the water
     if (this.y > 404) {
@@ -97,7 +109,7 @@ Player.prototype.handleInput = function(dir) {
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 400;
-    this.speed = 500;
+    this.speed = 300;
 };
 
 // Now instantiate your objects.
