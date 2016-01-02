@@ -1,3 +1,18 @@
 body {
     text-align: center;
 }
+
+header {
+	margin: auto;
+	max-width: 505px;
+	display: flex;
+}
+.playa {
+	text-align: left;
+	width: 50%;
+}
+
+.hatas {
+	text-align: right;
+	width: 50%;
+}

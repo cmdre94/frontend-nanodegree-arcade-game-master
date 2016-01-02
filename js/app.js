@@ -17,31 +17,31 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-this.x = this.x + (dt * this.speed);
+    this.x = this.x + (dt * this.speed);
 
-   if (this.x > 550) {
+    if (this.x > 550) {
         this.restart();
         }
 
     // Player collides with Enemy at various y coordinates to make the game more difficult
     if (this.y == player.y - 60 && (this.x > player.x - 20 && this.x < player.x + 20)) {
-        player.reset();
+        player.resetBug();
         }
         else if (this.y == player.y -40 && (this.x > player.x - 20 && this.x < player.x + 20)) {
-                player.reset();
+                player.resetBug();
         }        
         else if (this.y == player.y -20 && (this.x > player.x - 20 && this.x < player.x + 20)) {
-                player.reset();
+                player.resetBug();
         }       
         else if (this.y == player.y  && (this.x > player.x - 20 && this.x < player.x + 20)) {
-                player.reset();
+                player.resetBug();
         }
         else if (this.y == player.y + 20 && (this.x > player.x - 20 && this.x < player.x + 20)) {
-                player.reset();
+                player.resetBug();
         }       
-
 };
 
+//Resets the enemies to the left side of the canvas
 Enemy.prototype.restart = function () {
     var yS = [220, 140, 60];
     var speedS = [450, 550, 650];
@@ -53,30 +53,31 @@ Enemy.prototype.restart = function () {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
 };
 
+// Player Class
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(x, y, speed) {
+var Player = function(x, y, speed, playerscore, bugscore) {
     this.x = 200;
     this.y = 400;
     this.speed = 300;
+    this.playerscore = 0;
+    this.bugscore = 0;
     this.sprite = 'images/char-boy.png';
 };
 
 Player.prototype.udate = function() {
-
     this.x = this.x;
     this.y = this.y;
     this.speed = this.speed;
-    
+    this.playerscore = this.playerscore;
+    this.bugscore = this.bugscore;
 };
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
-
 };
 
 //Player movement with arrow keys
@@ -90,31 +91,47 @@ Player.prototype.handleInput = function(dir) {
     } else if (dir == 'right') {
         this.x = this.x + 20;
     }
-//Resets the player position if he reaches the water
+//Keeps the player from moving off the bottom of the canvas
     if (this.y > 404) {
         this.y = 404;
-    } else if (this.y < -5) {
+    }
+//Resets player to original position if he reaches the water
+        else if (this.y < -5) {
         this.reset();
     }
 
+//Keeps the player from moving off canvas
     if (this.x < -15) {
         this.x = -15;
     } else if (this.x > 415) {
         this.x = 415;
     }
-
 };
 
-// Reset player to original starting position
+// Reset player to original position
+// This function is called if the player reaches the water
+// Player gets 1 poing
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 400;
     this.speed = 300;
+    this.playerscore = this.playerscore + 1;
+    console.log(this.playerscore);
+};
+
+// Reset player to original position
+// This function is called if a bug hits the player
+// Hatas get 1 point
+Player.prototype.resetBug = function() {
+    this.x = 200;
+    this.y = 400;
+    this.speed = 300;
+    this.bugscore = this.bugscore + 1;
+    console.log(this.bugscore);
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-
 var allEnemies = [];
 var yS = [220, 140, 60];
 var speedS = [450, 550, 650];
@@ -129,8 +146,8 @@ var speedS = [450, 550, 650];
 
         allEnemies.push(enemy);
     }
-// Place the player object in a variable called player
 
+// Place the player object in a variable called player
 var player = new Player(x, y, speed);
 
 // This listens for key presses and sends the keys to your
