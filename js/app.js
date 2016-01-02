@@ -21,24 +21,24 @@ Enemy.prototype.update = function(dt) {
 
     if (this.x > 550) {
         this.restart();
-        }
+    }
 
     // Player collides with Enemy at various y coordinates to make the game more difficult
     if (this.y == player.y - 60 && (this.x > player.x - 20 && this.x < player.x + 20)) {
         player.resetBug();
-        }
-        else if (this.y == player.y -40 && (this.x > player.x - 20 && this.x < player.x + 20)) {
-                player.resetBug();
-        }        
-        else if (this.y == player.y -20 && (this.x > player.x - 20 && this.x < player.x + 20)) {
-                player.resetBug();
-        }       
-        else if (this.y == player.y  && (this.x > player.x - 20 && this.x < player.x + 20)) {
-                player.resetBug();
-        }
-        else if (this.y == player.y + 20 && (this.x > player.x - 20 && this.x < player.x + 20)) {
-                player.resetBug();
-        }       
+    }
+    else if (this.y == player.y -40 && (this.x > player.x - 20 && this.x < player.x + 20)) {
+            player.resetBug();
+    }        
+    else if (this.y == player.y -20 && (this.x > player.x - 20 && this.x < player.x + 20)) {
+            player.resetBug();
+    }       
+    else if (this.y == player.y  && (this.x > player.x - 20 && this.x < player.x + 20)) {
+            player.resetBug();
+    }
+    else if (this.y == player.y + 20 && (this.x > player.x - 20 && this.x < player.x + 20)) {
+            player.resetBug();
+    }       
 };
 
 //Resets the enemies to the left side of the canvas
@@ -68,6 +68,7 @@ var Player = function(x, y, speed, playerscore, bugscore) {
     this.sprite = 'images/char-boy.png';
 };
 
+// update()
 Player.prototype.udate = function() {
     this.x = this.x;
     this.y = this.y;
@@ -76,11 +77,13 @@ Player.prototype.udate = function() {
     this.bugscore = this.bugscore;
 };
 
+// render()
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
 };
 
 //Player movement with arrow keys
+//handleInput()
 Player.prototype.handleInput = function(dir) {
     if (dir == 'up') {
         this.y = this.y - 20;
@@ -110,24 +113,26 @@ Player.prototype.handleInput = function(dir) {
 
 // Reset player to original position
 // This function is called if the player reaches the water
-// Player gets 1 poing
+// Playa gets 1 poing
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 400;
     this.speed = 300;
     this.playerscore = this.playerscore + 1;
     console.log(this.playerscore);
+    document.getElementsByClassName('playa')[0].innerHTML = 'Playa: ' + this.playerscore;
 };
 
 // Reset player to original position
 // This function is called if a bug hits the player
-// Hatas get 1 point
+// Haters get 1 point
 Player.prototype.resetBug = function() {
     this.x = 200;
     this.y = 400;
     this.speed = 300;
     this.bugscore = this.bugscore + 1;
     console.log(this.bugscore);
+    document.getElementsByClassName('haters')[0].innerHTML = 'Haters: ' + this.bugscore;
 };
 
 // Now instantiate your objects.
