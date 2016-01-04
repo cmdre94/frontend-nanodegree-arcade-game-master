@@ -1,6 +1,19 @@
 frontend-nanodegree-arcade-game
-===============================
 
-Students should use this [rubric](https://www.udacity.com/course/viewer/#!/c-nd001/l-2696458597/m-2687128535) for self-checking their submission.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+Installation:
+1. Go to https://github.com/cmdre94/frontend-nanodegree-arcade-game-master.git
+
+2. Download the ZIP file and unzip the folder
+3. Right click on index.html and select open with
+	Google Chrome
+	Firefox
+	Internet Explorer
+
+Playing the Game:
+-Use the arrow keys to move the player.
+-Hold down arrow key to sprint
+-Make it to the water to score a point 
+-Get hit by a bug/hater and they get a point
+-Click refresh to reset the scores
+-Close the browser to quit.
